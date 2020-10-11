@@ -1,4 +1,20 @@
-### POST STUDENT
+### POST STUDENT SUCCESS
+
+POST http://localhost:8080/api/students
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id"     : "B0011",
+  "nisn"   : "2003113941",
+  "name"   : "Sammi Aldhi Yanto",
+  "gender" : "MALE",
+  "major"  : "MIPA",
+  "spp"    : 1000000
+}
+
+###
+
 POST http://localhost:8080/api/students
 Content-Type: application/json
 Accept: application/json
@@ -12,7 +28,7 @@ Accept: application/json
   "spp"    : 1000000
 }
 
-### POST STUDENT
+### POST STUDENT SUCCESS
 POST http://localhost:8080/api/students
 Content-Type: application/json
 Accept: application/json
@@ -41,7 +57,7 @@ Accept: application/json
 }
 
 
-### GET STUDENT
+### GET STUDENT SUCCESS
 GET http://localhost:8080/api/students/A001
 Accept: application/json
 
@@ -51,7 +67,7 @@ GET http://localhost:8080/api/students/SALAH
 Accept: application/json
 
 
-### UPDATE STUDENT
+### UPDATE STUDENT success
 PUT http://localhost:8080/api/students/A001
 Content-Type: application/json
 Accept: application/json
@@ -76,3 +92,25 @@ Accept: application/json
   "major"  : "MIPA",
   "spp"    : 10000000
 }
+
+### DELETE STUDENT SUCCESS
+
+DELETE http://localhost:8080/api/students/A001
+Accept: application/json
+
+
+### LIST ALL
+GET http://localhost:9090/api/students
+Content-Type: application/json
+Accept: application/json
+
+### WITH PARAMETER SIZE
+GET http://localhost:9090/api/students?size=3
+Content-Type: application/json
+Accept: application/json
+
+
+### WITH PARAMETER PAGE and SIZE
+GET http://localhost:9090/api/students?size=5&page=1
+Content-Type: application/json
+Accept: application/json

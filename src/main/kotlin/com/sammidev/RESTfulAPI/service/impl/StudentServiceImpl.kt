@@ -3,15 +3,18 @@ package com.sammidev.RESTfulAPI.service.impl
 import com.sammidev.RESTfulAPI.entity.Student
 import com.sammidev.RESTfulAPI.error.NotFoundException
 import com.sammidev.RESTfulAPI.model.CreateStudentRequest
+import com.sammidev.RESTfulAPI.model.ListStudentRequest
 import com.sammidev.RESTfulAPI.model.StudentResponse
 import com.sammidev.RESTfulAPI.model.UpdateStudentRequest
 import com.sammidev.RESTfulAPI.repository.StudentRepository
 import com.sammidev.RESTfulAPI.service.StudentService
 import org.springframework.stereotype.Service
 import com.sammidev.RESTfulAPI.validation.ValidationUtils
-import com.sammidev.model.WebResponse
+import org.springframework.data.domain.PageRequest
 import org.springframework.data.repository.findByIdOrNull
 import java.util.*
+import java.util.stream.Collector
+import java.util.stream.Collectors
 
 @Service
 class StudentServiceImpl(val studentRepository: StudentRepository,
@@ -42,19 +45,17 @@ class StudentServiceImpl(val studentRepository: StudentRepository,
                 createdAt = student.createdAt,
                 updatedAt = student.updatedAt
         )
+
     }
 
     override fun get(id: String): StudentResponse {
-        val student = studentRepository.findByIdOrNull(id)
-        if (student == null) {
-            throw NotFoundException()
-        }else {
-           return convertStudentToStudentResponse(student)
-        }
+        val student = findProductByIdOrThrowNotFound(id)
+        return convertStudentToStudentResponse(student!!)
     }
 
     override fun update(id: String, updateStudentRequest: UpdateStudentRequest): StudentResponse {
-        val student = studentRepository.findByIdOrNull(id) ?: throw NotFoundException()
+        val student = findProductByIdOrThrowNotFound(id)
+        validationUtils.validate(student!!)
         student.apply {
             nisn  = updateStudentRequest.nisn!!
             name  = updateStudentRequest.name!!
@@ -68,6 +69,25 @@ class StudentServiceImpl(val studentRepository: StudentRepository,
         return convertStudentToStudentResponse(student)
     }
 
+    override fun delete(id: String) {
+        val student =  findProductByIdOrThrowNotFound(id)
+        studentRepository.delete(student!!)
+    }
+
+    override fun list(listStudentRequest: ListStudentRequest): List<StudentResponse> {
+        val page = studentRepository.findAll(PageRequest.of(listStudentRequest.page, listStudentRequest.size))
+        val students: List<Student> = page.get().collect(Collectors.toList())
+        return students.map { convertStudentToStudentResponse(it) }
+    }
+
+    private fun findProductByIdOrThrowNotFound(id: String): Student? {
+        val student = studentRepository.findByIdOrNull(id)
+        if (student == null) {
+            throw NotFoundException()
+        }else {
+            return student
+        }
+    }
 
     private fun convertStudentToStudentResponse(student: Student) : StudentResponse{
         return StudentResponse(
