@@ -1,0 +1,12 @@
+GET http://localhost:8080/api/hello
+#Content-Type: application/json
+#Accept: application/json
+#
+#{
+#  "id"     : "A001",
+#  "nisn"   : "2003113946",
+#  "name"   : "Sammi Aldhi Yanto",
+#  "gender" : "MALE",
+#  "major"  : "MIPA",
+#  "spp"    : 1000000
+#}
