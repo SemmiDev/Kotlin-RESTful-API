@@ -14,23 +14,23 @@ data class Student(
         val id: String,
 
         @Column(name = "nisn")
-        val nisn: String,
+        var nisn: String,
 
         @Column(name = "name")
-        val name: String,
+        var name: String,
 
         @Column(name = "gender")
-        val gender: String,
+        var gender: String,
 
         @Column(name = "major")
-        val major: String,
+        var major: String,
 
         @Column(name = "spp")
-        val spp: Long,
+        var spp: Long,
 
         @Column(name = "created_at")
-        val createdAt: Date,
+        var createdAt: Date,
 
         @Column(name = "updated_at")
-        val updatedAt: Date?
+        var updatedAt: Date?
 )

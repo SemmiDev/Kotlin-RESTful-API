@@ -42,7 +42,7 @@ Response :
 
 Request :
 - Method    : GET
-- Endpoint  : 'api/students/{id_student}'
+- Endpoint  : 'api/students/{studentid}'
 - Header    :
     - Accept       : Application/json
 
@@ -68,7 +68,7 @@ Response :
 
 Request :
 - Method    : PUT
-- Endpoint  : 'api/students/{nisn_student}'
+- Endpoint  : 'api/students/{studentid}'
 - Header    :
     - Content-Type : Application/json
     - Accept       : Application/json
@@ -76,14 +76,11 @@ Request :
 
 ```json
 {
-  "id"     : "string, unique",
+  "nisn" : "string",
   "name"   : "string",
   "gender" : "string",
-  "class"  : "string",
   "major"  : "string",
-  "spp"    : "long",
-  "createdAt" : "date", 
-  "updatedAt" : "date" 
+  "spp"    : "long"
 }
 ```
 Response :
@@ -100,7 +97,8 @@ Response :
       "class"  : "string",
       "major"  : "string",
       "spp"    : "long",
-      "createdAt" : "date"
+      "createdAt" : "date", 
+      "updatedAt" : "date" 
   }
 }
 ```

@@ -4,10 +4,12 @@ import com.sammidev.RESTfulAPI.entity.Student
 import com.sammidev.RESTfulAPI.error.NotFoundException
 import com.sammidev.RESTfulAPI.model.CreateStudentRequest
 import com.sammidev.RESTfulAPI.model.StudentResponse
+import com.sammidev.RESTfulAPI.model.UpdateStudentRequest
 import com.sammidev.RESTfulAPI.repository.StudentRepository
 import com.sammidev.RESTfulAPI.service.StudentService
 import org.springframework.stereotype.Service
 import com.sammidev.RESTfulAPI.validation.ValidationUtils
+import com.sammidev.model.WebResponse
 import org.springframework.data.repository.findByIdOrNull
 import java.util.*
 
@@ -50,6 +52,22 @@ class StudentServiceImpl(val studentRepository: StudentRepository,
            return convertStudentToStudentResponse(student)
         }
     }
+
+    override fun update(id: String, updateStudentRequest: UpdateStudentRequest): StudentResponse {
+        val student = studentRepository.findByIdOrNull(id) ?: throw NotFoundException()
+        student.apply {
+            nisn  = updateStudentRequest.nisn!!
+            name  = updateStudentRequest.name!!
+            gender  = updateStudentRequest.gender!!
+            major = updateStudentRequest.major!!
+            spp   = updateStudentRequest.spp!!
+            updatedAt = Date()
+        }
+
+        studentRepository.save(student)
+        return convertStudentToStudentResponse(student)
+    }
+
 
     private fun convertStudentToStudentResponse(student: Student) : StudentResponse{
         return StudentResponse(

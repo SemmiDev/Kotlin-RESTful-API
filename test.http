@@ -1,5 +1,4 @@
 ### POST STUDENT
-
 POST http://localhost:8080/api/students
 Content-Type: application/json
 Accept: application/json
@@ -14,7 +13,6 @@ Accept: application/json
 }
 
 ### POST STUDENT
-
 POST http://localhost:8080/api/students
 Content-Type: application/json
 Accept: application/json
@@ -29,7 +27,6 @@ Accept: application/json
 }
 
 ### POST STUDENT FAILED
-
 POST http://localhost:8080/api/students
 Content-Type: application/json
 Accept: application/json
@@ -45,12 +42,37 @@ Accept: application/json
 
 
 ### GET STUDENT
-
 GET http://localhost:8080/api/students/A001
 Accept: application/json
 
 
 ### GET STUDENT NOT FOUND
-
 GET http://localhost:8080/api/students/SALAH
 Accept: application/json
+
+
+### UPDATE STUDENT
+PUT http://localhost:8080/api/students/A001
+Content-Type: application/json
+Accept: application/json
+
+{
+  "nisn"   : "2003113940",
+  "name"   : "Sam dev",
+  "gender" : "MALE",
+  "major"  : "MIPA",
+  "spp"    : 10000000
+}
+
+### UPDATE STUDENT NOTFOUND
+PUT http://localhost:8080/api/students/SALAH
+Content-Type: application/json
+Accept: application/json
+
+{
+  "nisn"   : "",
+  "name"   : "Sam dev",
+  "gender" : "MALE",
+  "major"  : "MIPA",
+  "spp"    : 10000000
+}
