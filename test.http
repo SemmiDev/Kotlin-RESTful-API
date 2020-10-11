@@ -1,12 +1,56 @@
-GET http://localhost:8080/api/hello
-#Content-Type: application/json
-#Accept: application/json
-#
-#{
-#  "id"     : "A001",
-#  "nisn"   : "2003113946",
-#  "name"   : "Sammi Aldhi Yanto",
-#  "gender" : "MALE",
-#  "major"  : "MIPA",
-#  "spp"    : 1000000
-#}
+### POST STUDENT
+
+POST http://localhost:8080/api/students
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id"     : "A002",
+  "nisn"   : "2003113947",
+  "name"   : "Aditya Andika Putra",
+  "gender" : "FEMALE",
+  "major"  : "IPS",
+  "spp"    : 1000000
+}
+
+### POST STUDENT
+
+POST http://localhost:8080/api/students
+Content-Type: application/json
+Accept: application/json
+
+{
+ "id"     : "A003",
+  "nisn"   : "2003113948",
+  "name"   : "Ayatulah Ramadhan Jacoeb",
+  "gender" : "FEMALE",
+  "major"  : "MIPA",
+  "spp"    : 1000000
+}
+
+### POST STUDENT FAILED
+
+POST http://localhost:8080/api/students
+Content-Type: application/json
+Accept: application/json
+
+{
+ "id"     : "",
+ "nisn"   : "",
+ "name"   : "",
+ "gender" : "",
+ "major"  : "IPS",
+ "spp"    : 1000000
+}
+
+
+### GET STUDENT
+
+GET http://localhost:8080/api/students/A001
+Accept: application/json
+
+
+### GET STUDENT NOT FOUND
+
+GET http://localhost:8080/api/students/SALAH
+Accept: application/json

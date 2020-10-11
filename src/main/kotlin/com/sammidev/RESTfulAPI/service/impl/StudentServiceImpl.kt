@@ -42,8 +42,8 @@ class StudentServiceImpl(val studentRepository: StudentRepository,
         )
     }
 
-    override fun get(nisn: String): StudentResponse {
-        val student = studentRepository.findByIdOrNull(nisn)
+    override fun get(id: String): StudentResponse {
+        val student = studentRepository.findByIdOrNull(id)
         if (student == null) {
             throw NotFoundException()
         }else {

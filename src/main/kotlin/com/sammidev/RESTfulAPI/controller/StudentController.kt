@@ -24,11 +24,11 @@ class StudentController(val studentService: StudentService) {
     }
 
     @GetMapping(
-            value    = ["/api/students/{student_nisn}"],
+            value    = ["/api/students/{id}"],
             produces = ["application/json"]
     )
-    fun getStudent(@PathVariable("idStudent") nisn: String) : WebResponse<StudentResponse> {
-        val studentResponse = studentService.get(nisn);
+    fun getStudent(@PathVariable("id") id: String) : WebResponse<StudentResponse> {
+        val studentResponse = studentService.get(id)
         return WebResponse(
                 code = 200,
                 status = "OK",

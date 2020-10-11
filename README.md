@@ -42,7 +42,7 @@ Response :
 
 Request :
 - Method    : GET
-- Endpoint  : 'api/students/{nisn_student}'
+- Endpoint  : 'api/students/{id_student}'
 - Header    :
     - Accept       : Application/json
 
