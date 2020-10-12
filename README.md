@@ -1,4 +1,13 @@
 # API SPECS
+
+## AUTHENTICATION
+All API must use this authentication 
+#Request
+- Header
+  - X-API-KEY : "secret key"
+    
+
+
 ## Create Student
 
 Request :

@@ -1,6 +1,7 @@
 package com.sammidev.RESTfulAPI.controller
 
 import com.sammidev.RESTfulAPI.error.NotFoundException
+import com.sammidev.RESTfulAPI.error.UnauthorizedException
 import com.sammidev.model.WebResponse
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
@@ -26,13 +27,13 @@ class ErrorController {
                 data = "Not Found"
         )
     }
-//
-//    @ExceptionHandler(value = [UnauthorizedException::class])
-//    fun unauthorized(unauthorizedException: UnauthorizedException): WebResponse<String> {
-//        return WebResponse(
-//                code = 401,
-//                status = "UNAUTHORIZED",
-//                data = "Please put your X-Api-Key"
-//        )
-//    }
+
+    @ExceptionHandler(value = [UnauthorizedException::class])
+    fun unauthorized(unauthorizedException: UnauthorizedException): WebResponse<String> {
+        return WebResponse(
+                code = 401,
+                status = "UNAUTHORIZED",
+                data = "Please put your X-Api-Key"
+        )
+    }
 }
